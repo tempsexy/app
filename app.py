@@ -9,31 +9,24 @@ import string
 import os
 import logging
 from datetime import timedelta
-
-
-
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-
 
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
 app.config['SESSION_REFRESH_EACH_REQUEST'] = True
 app.config['DEBUG'] = False
 app.config['TESTING'] = False
 
-
 TEST_CARD = "4031630422575208|01|2030|280"
-
 INDEX_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAPTAIN TERMIN API</title>
+    <title>AFUONA API</title>
     <style>
         * {
             margin: 0;
@@ -137,26 +130,24 @@ INDEX_TEMPLATE = """
 <body>
     <div class="stars"></div>
     <div class="container">
-        <div class="logo">CAPTAIN</div>
+        <div class="logo">𓆩𝗔𓆪𝗙𝗨𝗢𝗡𝗔</div>
         <div class="name">𝗔𝗣𝗜</div>
         
-        <a href="https://t.me/CAPTTERMIN" target="_blank" class="telegram-link">
+        <a href="https://t.me/afuonax" target="_blank" class="telegram-link">
             <svg class="telegram-icon" viewBox="0 0 24 24">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.287-.6.287l.21-3.07 5.58-5.05c.24-.21-.054-.33-.37-.12l-6.9 4.35-2.97-.99c-.64-.2-.66-.64.14-.96l11.64-4.47c.54-.2 1.01.13.83.96z"/>
             </svg>
         </a>
         
-        <div class="footer">© 2026 CAPTAIN TERMIN</div>
+        <div class="footer">© 2026 AFUONA</div>
     </div>
 </body>
 </html>
 """
-
  
 @app.route('/')
 def home():
     return render_template_string(INDEX_TEMPLATE)
-
 @app.route('/process')
 def process_request():
     try:
@@ -198,7 +189,6 @@ def process_request():
     except Exception as e:
         logger.error(f"Process request error: {e}")
         return jsonify({"error": str(e)}), 500
-
 def parse_proxy_format(proxy):
     """Parse all proxy formats"""
     import re
@@ -632,7 +622,6 @@ def test_site_with_card(domain, proxy_dict):
             "response": str(e)
         }
 
-
 @app.route('/test_site')
 def test_site_request():
     try:
@@ -662,7 +651,6 @@ def test_site_request():
     except Exception as e:
         logger.error(f"Test site error: {e}")
         return jsonify({"error": str(e)}), 500
-
 @app.route('/test_sites')
 def test_sites_request():
     try:
@@ -709,7 +697,6 @@ def test_sites_request():
     except Exception as e:
         logger.error(f"Test sites error: {e}")
         return jsonify({"error": str(e)}), 500
-
 @app.route('/mass')
 def mass_request():
     try:
@@ -772,7 +759,6 @@ def mass_request():
     except Exception as e:
         logger.error(f"Mass request error: {e}")
         return jsonify({"error": str(e)}), 500
-
 @app.route('/test_proxy')
 def test_proxy_endpoint():
     proxy_str = request.args.get('proxy')
@@ -797,26 +783,23 @@ def test_proxy_endpoint():
             "success": False,
             "error": f"Proxy test failed: {result}"
         }), 400
-
 @app.route('/health')
 def health_check():
     return jsonify({"status": "healthy"}), 200
-
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({"error": "Endpoint not found"}), 404
-
 @app.errorhandler(500)
 def internal_error(error):
     return jsonify({"error": "Internal server error"}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))
-    print(" CAPTAIN TERMIN API -  Payment Gateway 🔥")
+    print(" AFUONA API -  Payment Gateway 🔥")
     print("=" * 60)
     print(f"🚀 Running on port: {port}")
     print(f"📱 Telegram: https://t.me/afuonax")
-    print(f"👑 Developer: CAPTAIN")
+    print(f"👑 Developer: 𓆩𝗔𓆪𝗙𝗨𝗢𝗡𝗔")
     print(f"🔑 API Key: afuona_2026")
     print("=" * 60)
     app.run(host='0.0.0.0', port=port, debug=False)
